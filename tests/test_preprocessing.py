@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from langchain_core.documents import Document
 
-from rag_pipeline import PreprocessingConfig, RAGPipeline, RAGPipelineConfig
+from src.rag_pipeline import RAGPipelineConfig, PreprocessingConfig, RAGPipeline
 
 
 def _create_sample_csv(tmp_path: Path) -> Path:
@@ -72,3 +72,24 @@ def test_chunking_respects_configuration(tmp_path: Path, text: str, expected_chu
     documents = pipeline.preprocess()
 
     assert len(documents) == expected_chunks
+
+@pytest.mark.parametrize(
+    "path,expected_chunks",
+    [
+        (Path("../res/train_data.csv"), 5),
+    ],
+)
+def test_on_csv(path: Path, expected_chunks: int):
+    config = RAGPipelineConfig(
+        preprocessing=PreprocessingConfig(
+            csv_path=path,
+            text_column="text",
+            chunk_size=1000,
+            chunk_overlap=100,
+        )
+    )
+
+    pipeline = RAGPipeline(config)
+    documents = pipeline.preprocess()
+
+    print(documents[0])

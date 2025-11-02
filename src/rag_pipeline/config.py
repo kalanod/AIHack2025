@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import List, Optional
 
 
-@dataclass(slots=True)
+@dataclass()
 class PreprocessingConfig:
     """Configuration parameters for textual preprocessing.
 
@@ -48,35 +48,35 @@ class PreprocessingConfig:
     encoding: str = "utf-8"
 
 
-@dataclass(slots=True)
+@dataclass()
 class EmbeddingConfig:
     """Placeholder configuration for embedding models."""
 
     model_name: Optional[str] = None
 
 
-@dataclass(slots=True)
+@dataclass()
 class VectorStoreConfig:
     """Placeholder configuration for the vector storage backend."""
 
     backend: Optional[str] = None
 
 
-@dataclass(slots=True)
+@dataclass()
 class RetrievalConfig:
     """Placeholder configuration for the retrieval strategy."""
 
     k: int = 5
 
 
-@dataclass(slots=True)
+@dataclass()
 class GenerationConfig:
     """Placeholder configuration for the LLM generation module."""
 
     model: Optional[str] = None
 
 
-@dataclass(slots=True)
+@dataclass()
 class RAGPipelineConfig:
     """Aggregated configuration for the whole RAG pipeline."""
 
