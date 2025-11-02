@@ -50,9 +50,11 @@ class PreprocessingConfig:
 
 @dataclass()
 class EmbeddingConfig:
-    """Placeholder configuration for embedding models."""
+    """Configuration parameters for the embedding stage."""
 
     model_name: Optional[str] = None
+    base_url: Optional[str] = None
+    timeout: float = 60.0
 
 
 @dataclass()
